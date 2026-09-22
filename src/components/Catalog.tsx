@@ -1,12 +1,14 @@
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
-import { ArrowLeft, ArrowRight, Clock3 } from 'lucide-react'
+import type { EmblaCarouselType } from 'embla-carousel'
+import { ArrowLeft, ArrowRight, Clock3, Expand } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { formatBRL, services, whatsappLink, type Service } from '../data/site'
+import { services, whatsappLink, type Service } from '../data/site'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
+import { usePhotoViewer } from './ui/usePhotoViewer'
 
 const filters = [
   { id: 'todos', label: 'Todos', tags: null },
@@ -100,8 +102,8 @@ export function Catalog() {
             <div>
               <p className="font-display text-xl font-semibold text-cream sm:text-2xl">Manutenção de 15 a 23 dias</p>
               <p className="mt-1 max-w-xl text-sm leading-relaxed text-cream/70">
-                Mantenha seus cílios sempre perfeitos. Após 24 dias, a manutenção passa a ser cobrada como valor cheio
-                (R$100). Remoção de outros profissionais R$15 · dos meus procedimentos R$10.
+                Mantenha seus cílios sempre perfeitos. O ideal é retornar entre 15 e 23 dias. Depois desse prazo, o valor
+                da manutenção é combinado no agendamento.
               </p>
             </div>
           </div>
@@ -119,18 +121,28 @@ export function Catalog() {
   )
 }
 
+function resetAutoplay(api: EmblaCarouselType) {
+  const autoplay = api.plugins()?.autoplay
+  if (autoplay && 'reset' in autoplay && typeof autoplay.reset === 'function') autoplay.reset()
+}
+
 function Carousel({ items }: { items: Service[] }) {
+  const { photo, openPhoto } = usePhotoViewer()
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: items.length > 3, align: 'start', skipSnaps: false, dragFree: false, duration: 28 },
     [Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: true, stopOnFocusIn: true })],
   )
   const [selected, setSelected] = useState(0)
+  const [canPrev, setCanPrev] = useState(items.length > 1)
+  const [canNext, setCanNext] = useState(items.length > 1)
   const [progress, setProgress] = useState(0)
   const snaps = emblaApi?.scrollSnapList() ?? []
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
     setSelected(emblaApi.selectedScrollSnap())
+    setCanPrev(emblaApi.canScrollPrev())
+    setCanNext(emblaApi.canScrollNext())
   }, [emblaApi])
 
   const onScroll = useCallback(() => {
@@ -140,15 +152,40 @@ function Carousel({ items }: { items: Service[] }) {
 
   useEffect(() => {
     if (!emblaApi) return
-    // oxlint-disable-next-line react/set-state-in-effect -- subscribing to Embla events, state only changes on those events
+    // oxlint-disable-next-line react/set-state-in-effect -- sync the first snap once Embla is ready
+    onSelect()
+    // oxlint-disable-next-line react/set-state-in-effect -- sync progress once Embla is ready
+    onScroll()
     emblaApi.on('select', onSelect).on('reInit', onSelect).on('scroll', onScroll).on('reInit', onScroll)
     return () => {
       emblaApi.off('select', onSelect).off('reInit', onSelect).off('scroll', onScroll).off('reInit', onScroll)
     }
   }, [emblaApi, onSelect, onScroll])
 
-  const scrollPrev = () => emblaApi?.scrollPrev()
-  const scrollNext = () => emblaApi?.scrollNext()
+  useEffect(() => {
+    const autoplay = emblaApi?.plugins()?.autoplay
+    if (!autoplay || !('play' in autoplay) || !('stop' in autoplay)) return
+    if (photo) autoplay.stop()
+    else autoplay.play()
+  }, [emblaApi, photo])
+
+  const scrollPrev = () => {
+    if (!emblaApi || !emblaApi.canScrollPrev()) return
+    resetAutoplay(emblaApi)
+    emblaApi.scrollPrev()
+  }
+  const scrollNext = () => {
+    if (!emblaApi || !emblaApi.canScrollNext()) return
+    resetAutoplay(emblaApi)
+    emblaApi.scrollNext()
+  }
+
+  const openServicePhoto = (service: Service) => {
+    openPhoto({
+      src: service.image,
+      alt: `Resultado de extensão de cílios ${service.name}`,
+    })
+  }
 
   return (
     <div className="relative">
@@ -161,27 +198,29 @@ function Carousel({ items }: { items: Service[] }) {
               aria-roledescription="slide"
               aria-label={`${i + 1} de ${items.length}: ${s.name}`}
             >
-              <ServiceCard service={s} active={i === selected} index={i} />
+              <ServiceCard service={s} active={i === selected} index={i} onOpenPhoto={() => openServicePhoto(s)} />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="container-x mt-8 flex items-center justify-between gap-6">
+      <div className="container-x relative z-10 mt-8 flex items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={scrollPrev}
+            disabled={!canPrev}
             aria-label="Modelo anterior"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-cream/20 text-cream transition-all duration-300 hover:border-gold-400 hover:bg-gold-400 hover:text-wine-900 active:scale-95"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-cream/20 text-cream transition-all duration-300 hover:border-gold-400 hover:bg-gold-400 hover:text-wine-900 active:scale-95 disabled:pointer-events-none disabled:opacity-35"
           >
             <ArrowLeft size={18} />
           </button>
           <button
             type="button"
             onClick={scrollNext}
+            disabled={!canNext}
             aria-label="Próximo modelo"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-cream/20 text-cream transition-all duration-300 hover:border-gold-400 hover:bg-gold-400 hover:text-wine-900 active:scale-95"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-cream/20 text-cream transition-all duration-300 hover:border-gold-400 hover:bg-gold-400 hover:text-wine-900 active:scale-95 disabled:pointer-events-none disabled:opacity-35"
           >
             <ArrowRight size={18} />
           </button>
@@ -219,8 +258,18 @@ function Carousel({ items }: { items: Service[] }) {
   )
 }
 
-function ServiceCard({ service, active, index }: { service: Service; active: boolean; index: number }) {
-  const msg = `Olá, Gabrieli! Gostaria de agendar o modelo *${service.name}* (${formatBRL(service.price)}). 💗`
+function ServiceCard({
+  service,
+  active,
+  index,
+  onOpenPhoto,
+}: {
+  service: Service
+  active: boolean
+  index: number
+  onOpenPhoto: () => void
+}) {
+  const msg = `Olá, Gabrieli! Gostaria de agendar o modelo *${service.name}*. 💗`
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -236,14 +285,23 @@ function ServiceCard({ service, active, index }: { service: Service; active: boo
       <div className="relative aspect-[4/5] overflow-hidden">
         <img
           src={service.image}
-          alt={`Resultado de extensão de cílios ${service.name}`}
+          alt=""
           loading="lazy"
           decoding="async"
           draggable={false}
-          className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-[1.06]"
+          className="pointer-events-none h-full w-full object-cover transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-[1.06]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0)_40%,rgba(47,9,16,0.92)_100%)]" />
-        <div className="absolute top-4 left-4 flex flex-wrap gap-1.5">
+        <button
+          type="button"
+          onClick={onOpenPhoto}
+          aria-label={`Ampliar foto de ${service.name}`}
+          className="absolute inset-0 z-[1] cursor-zoom-in touch-pan-y"
+        />
+        <span className="pointer-events-none absolute top-4 right-4 z-[2] inline-flex h-9 w-9 items-center justify-center rounded-full border border-cream/25 bg-wine-900/45 text-cream backdrop-blur-md sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100">
+          <Expand size={15} />
+        </span>
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0)_40%,rgba(47,9,16,0.92)_100%)]" />
+        <div className="pointer-events-none absolute top-4 left-4 z-[2] flex flex-wrap gap-1.5">
           {service.featured && (
             <span className="rounded-full bg-gold-400 px-3 py-1 text-[0.62rem] font-semibold tracking-[0.2em] text-wine-900 uppercase">
               Mais pedido
@@ -258,40 +316,20 @@ function ServiceCard({ service, active, index }: { service: Service; active: boo
             </span>
           ))}
         </div>
-        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] p-5 sm:p-6">
           <p className="eyebrow text-gold-400">{service.tagline}</p>
           <h3 className="font-display mt-1.5 text-3xl leading-none font-semibold text-cream sm:text-[2.1rem]">{service.name}</h3>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-sm leading-relaxed text-cream/75">{service.description}</p>
-
-        <dl className="mt-5 flex items-end justify-between gap-4 border-t border-cream/10 pt-5">
-          <div>
-            <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">Colocação</dt>
-            <dd className="font-display mt-1 text-[2rem] leading-none font-semibold text-gold-300">{formatBRL(service.price)}</dd>
-          </div>
-          <div className="text-right">
-            <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">Manutenção</dt>
-            <dd className="mt-1 space-y-0.5 text-sm leading-tight text-cream">
-              <p>
-                <span className="font-display text-lg font-semibold">{formatBRL(service.maintenance.early)}</span>
-                <span className="ml-1.5 text-xs text-cream/55">15 a 23 dias</span>
-              </p>
-              <p>
-                <span className="font-display text-lg font-semibold">{formatBRL(service.maintenance.late)}</span>
-                <span className="ml-1.5 text-xs text-cream/55">após 24 dias</span>
-              </p>
-            </dd>
-          </div>
-        </dl>
+        <p className="mb-6 text-sm leading-relaxed text-cream/75">{service.description}</p>
 
         <a
           href={whatsappLink(msg)}
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-cream py-3.5 text-sm font-medium text-wine-800 transition-all duration-300 hover:bg-gold-300 active:scale-[0.98]"
+          className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-cream py-3.5 text-sm font-medium text-wine-800 transition-all duration-300 hover:bg-gold-300 active:scale-[0.98]"
         >
           <WhatsAppIcon className="h-4 w-4" />
           Agendar este modelo

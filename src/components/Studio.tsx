@@ -1,14 +1,18 @@
-import { Banknote, CreditCard, MapPin, Navigation, Phone, QrCode } from 'lucide-react'
+import { Banknote, CreditCard, Expand, MapPin, Navigation, Phone, QrCode } from 'lucide-react'
 import { motion } from 'motion/react'
 import studio from '../assets/studio.webp'
 import { business, paymentMethods } from '../data/site'
+import { usePhotoViewer } from './ui/usePhotoViewer'
 import { Reveal } from './ui/Reveal'
 import { SectionHeading } from './ui/SectionHeading'
 
 const paymentIcons = [Banknote, QrCode, CreditCard, CreditCard]
 
+const studioAlt = 'Interior do studio: parede vinho, prateleira de esmaltes, maca e ring light'
+
 export function Studio() {
   const a = business.address
+  const { openPhoto } = usePhotoViewer()
   return (
     <section id="studio" className="relative scroll-mt-20 py-24 sm:py-32">
       <div className="container-x">
@@ -24,13 +28,22 @@ export function Studio() {
             <div className="group relative h-full min-h-[22rem] overflow-hidden rounded-[2rem] shadow-glow">
               <img
                 src={studio}
-                alt="Interior do studio: parede vinho, prateleira de esmaltes, maca e ring light"
+                alt=""
                 loading="lazy"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[var(--ease-luxe)] group-hover:scale-[1.05]"
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[var(--ease-luxe)] group-hover:scale-[1.05]"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(47,9,16,0.85))]" />
-              <div className="absolute inset-x-0 bottom-0 p-7 text-cream">
+              <button
+                type="button"
+                aria-label={`Ampliar foto: ${studioAlt}`}
+                onClick={() => openPhoto({ src: studio, alt: studioAlt })}
+                className="absolute inset-0 cursor-zoom-in"
+              />
+              <span className="pointer-events-none absolute top-4 right-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 bg-wine-900/45 text-cream backdrop-blur-md sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100">
+                <Expand size={15} />
+              </span>
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(47,9,16,0.85))]" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-7 text-cream">
                 <p className="eyebrow text-gold-400">Endereço</p>
                 <p className="font-display mt-2 text-2xl leading-tight font-semibold">{a.street}</p>
                 <p className="mt-1 text-sm text-cream/80">

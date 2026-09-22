@@ -1,7 +1,7 @@
 import { Plus } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
-import { formatBRL, policies, restrictions } from '../data/site'
+import { policies, restrictions } from '../data/site'
 import { Reveal } from './ui/Reveal'
 import { SectionHeading } from './ui/SectionHeading'
 
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Vocês fazem remoção?',
-    a: `Sim. ${policies.removal.map((r) => `${r.label}: ${formatBRL(r.price)}`).join(' · ')}.`,
+    a: `Sim. ${policies.removal.join(' · ')}. Os valores são combinados no agendamento.`,
   },
   {
     q: 'Como devo me preparar para o dia?',
