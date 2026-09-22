@@ -47,20 +47,6 @@ export function About() {
               </span>
               <div className="pointer-events-none absolute inset-0 rounded-[2rem] rounded-tl-[6rem] ring-1 ring-inset ring-gold-400/40" />
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="glass absolute right-3 -bottom-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-soft sm:-right-8"
-            >
-              <span className="font-display text-4xl leading-none font-semibold text-wine-600">21</span>
-              <span className="text-xs leading-tight text-ink-soft">
-                anos, apaixonada
-                <br />
-                pela beleza
-              </span>
-            </motion.div>
           </Reveal>
         </div>
 
