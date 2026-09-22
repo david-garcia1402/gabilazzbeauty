@@ -48,8 +48,6 @@ export type Service = {
   tagline: string
   description: string
   image: string
-  price: number
-  maintenance: { early: number; late: number }
   tags: string[]
   featured?: boolean
 }
@@ -62,8 +60,6 @@ export const services: Service[] = [
     description:
       'Uma opção popular para quem busca cílios mais cheios, enquanto mantém um aspecto natural e confortável.',
     image: volumeBrasileiro,
-    price: 160,
-    maintenance: { early: 95, late: 100 },
     tags: ['Volume', 'Natural'],
     featured: true,
   },
@@ -74,8 +70,6 @@ export const services: Service[] = [
     description:
       'Esse é o modelo mais ousado! Ele traz volume e um acabamento mais cheio. Ideal para quem quer os cílios bem volumosos.',
     image: volumeEgipcio,
-    price: 170,
-    maintenance: { early: 95, late: 100 },
     tags: ['Volume', 'Marcante'],
   },
   {
@@ -85,8 +79,6 @@ export const services: Service[] = [
     description:
       'Esse efeito proporciona alongamento no canto externo, criando um olhar elegante e alongado.',
     image: efeitoFoxEyes,
-    price: 170,
-    maintenance: { early: 95, late: 100 },
     tags: ['Efeito', 'Alongado'],
     featured: true,
   },
@@ -97,8 +89,6 @@ export const services: Service[] = [
     description:
       'Proporciona um olhar marcante e natural. Com fios marrom, é ideal para realçar o olhar de forma mais suave e delicada.',
     image: brasileiroMarrom,
-    price: 160,
-    maintenance: { early: 95, late: 100 },
     tags: ['Fios marrom', 'Natural'],
   },
   {
@@ -108,8 +98,6 @@ export const services: Service[] = [
     description:
       'Esse efeito proporciona alongamento delicado no canto externo, criando um olhar elegante e alongado.',
     image: efeitoCisne,
-    price: 170,
-    maintenance: { early: 95, late: 100 },
     tags: ['Efeito', 'Elegante'],
   },
   {
@@ -119,8 +107,6 @@ export const services: Service[] = [
     description:
       'Fica super volumoso, mas com um formato que mantém a leveza. Perfeito para quem quer algo que se destaque sem ser exagerado demais.',
     image: kimKardashian,
-    price: 170,
-    maintenance: { early: 95, late: 100 },
     tags: ['Volume', 'Destaque'],
   },
   {
@@ -130,8 +116,6 @@ export const services: Service[] = [
     description:
       'Um modelo mais natural, dando um maior destaque porém com um volume suave, sem exageros.',
     image: volumeAura,
-    price: 160,
-    maintenance: { early: 95, late: 100 },
     tags: ['Volume', 'Natural'],
   },
   {
@@ -141,8 +125,6 @@ export const services: Service[] = [
     description:
       'Utiliza o fio 4D na cor marrom, com alguns spikes (fios maiores), trazendo naturalidade e um charme diferente.',
     image: volumeFlora,
-    price: 160,
-    maintenance: { early: 95, late: 100 },
     tags: ['Volume', 'Fios marrom'],
   },
   {
@@ -152,8 +134,6 @@ export const services: Service[] = [
     description:
       'Preenchimento somente do canto externo ao meio dos olhos, trazendo um efeito alongado e leve.',
     image: sirenaCisne,
-    price: 140,
-    maintenance: { early: 85, late: 95 },
     tags: ['Efeito', 'Leve'],
   },
 ]
@@ -207,11 +187,8 @@ export const restrictions = [
 
 export const policies = {
   maintenance:
-    'A manutenção deve ser realizada de 15 a 23 dias. Após o prazo de 24 a 30 dias será cobrado o valor de R$100.',
-  removal: [
-    { label: 'Remoção de procedimentos de outros profissionais', price: 15 },
-    { label: 'Remoção dos meus procedimentos', price: 10 },
-  ],
+    'A manutenção deve ser realizada de 15 a 23 dias. Após o prazo de 24 a 30 dias, o valor é combinado no agendamento.',
+  removal: ['Remoção de procedimentos de outros profissionais', 'Remoção dos meus procedimentos'],
 }
 
 export const paymentMethods = ['Dinheiro', 'Pix', 'Cartão de crédito', 'Cartão de débito']
@@ -224,6 +201,3 @@ export const navLinks = [
   { href: '#studio', label: 'Studio' },
   { href: '#faq', label: 'Dúvidas' },
 ]
-
-export const formatBRL = (value: number) =>
-  value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })

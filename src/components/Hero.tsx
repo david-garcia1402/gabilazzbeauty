@@ -4,12 +4,16 @@ import { useRef } from 'react'
 import heroImg from '../assets/hero.webp'
 import { business, defaultWhatsappMessage, whatsappLink } from '../data/site'
 import { Button } from './ui/Button'
+import { usePhotoViewer } from './ui/usePhotoViewer'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+const heroAlt = 'Gabrieli Lazzarotto, lash designer, segurando escovinhas de cílios sob um ring light'
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
+  const { openPhoto } = usePhotoViewer()
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '18%'])
@@ -25,7 +29,7 @@ export function Hero() {
       <motion.div style={{ y: imgY }} className="absolute inset-0 -z-10 lg:left-[18%]">
         <motion.img
           src={heroImg}
-          alt="Gabrieli Lazzarotto, lash designer, segurando escovinhas de cílios sob um ring light"
+          alt=""
           width={1081}
           height={1441}
           fetchPriority="high"
@@ -33,10 +37,16 @@ export function Hero() {
           initial={{ scale: 1.12, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.8, ease }}
-          className="h-full w-full object-cover object-[62%_20%] sm:object-[center_20%]"
+          className="pointer-events-none h-full w-full object-cover object-[62%_20%] sm:object-[center_20%]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_80%,rgba(122,27,42,0.55),transparent_60%)]" />
+        <button
+          type="button"
+          aria-label={`Ampliar foto: ${heroAlt}`}
+          onClick={() => openPhoto({ src: heroImg, alt: heroAlt })}
+          className="absolute inset-0 cursor-zoom-in"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_80%,rgba(122,27,42,0.55),transparent_60%)]" />
       </motion.div>
       <div
         aria-hidden

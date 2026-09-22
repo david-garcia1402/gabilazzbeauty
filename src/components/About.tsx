@@ -1,7 +1,8 @@
-import { Heart, Sparkles, ShieldCheck } from 'lucide-react'
+import { Expand, Heart, Sparkles, ShieldCheck } from 'lucide-react'
 import { motion } from 'motion/react'
 import gabrieli from '../assets/gabrieli.webp'
 import { business } from '../data/site'
+import { usePhotoViewer } from './ui/usePhotoViewer'
 import { Reveal } from './ui/Reveal'
 
 const values = [
@@ -10,7 +11,10 @@ const values = [
   { icon: Heart, title: 'Acolhimento', text: 'Atendimento atencioso, caprichoso e cheio de carinho.' },
 ]
 
+const portraitAlt = 'Retrato de Gabrieli Lazzarotto'
+
 export function About() {
+  const { openPhoto } = usePhotoViewer()
   return (
     <section id="sobre" className="pattern-swirl relative scroll-mt-20 overflow-hidden py-24 sm:py-32">
       <div className="container-x grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
@@ -22,17 +26,26 @@ export function About() {
               animate={{ rotate: [0, 6, 0] }}
               transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
             />
-            <div className="relative overflow-hidden rounded-[2rem] rounded-tl-[6rem] shadow-glow">
+            <div className="group relative overflow-hidden rounded-[2rem] rounded-tl-[6rem] shadow-glow">
               <img
                 src={gabrieli}
-                alt="Retrato de Gabrieli Lazzarotto"
+                alt=""
                 width={540}
                 height={810}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[2/3] w-full object-cover transition-transform duration-[1.6s] ease-[var(--ease-luxe)] hover:scale-[1.04]"
+                className="pointer-events-none aspect-[2/3] w-full object-cover transition-transform duration-[1.6s] ease-[var(--ease-luxe)] group-hover:scale-[1.04]"
               />
-              <div className="absolute inset-0 rounded-[2rem] rounded-tl-[6rem] ring-1 ring-inset ring-gold-400/40" />
+              <button
+                type="button"
+                aria-label={`Ampliar foto: ${portraitAlt}`}
+                onClick={() => openPhoto({ src: gabrieli, alt: portraitAlt })}
+                className="absolute inset-0 cursor-zoom-in"
+              />
+              <span className="pointer-events-none absolute top-4 right-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-cream/40 bg-wine-900/40 text-cream backdrop-blur-md sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100">
+                <Expand size={15} />
+              </span>
+              <div className="pointer-events-none absolute inset-0 rounded-[2rem] rounded-tl-[6rem] ring-1 ring-inset ring-gold-400/40" />
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
