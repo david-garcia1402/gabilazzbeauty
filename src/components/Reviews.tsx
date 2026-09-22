@@ -7,9 +7,8 @@ const stars = Array.from({ length: 5 })
 
 export function Reviews() {
   return (
-    <section id="depoimentos" className="relative scroll-mt-20 overflow-hidden bg-blush/60 py-24 sm:py-32">
-      <div aria-hidden className="pattern-swirl pointer-events-none absolute inset-0" />
-      <div className="container-x relative">
+    <section id="depoimentos" className="relative scroll-mt-20 py-24 sm:py-32">
+      <div className="container-x">
         <div className="grid items-start gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <SectionHeading

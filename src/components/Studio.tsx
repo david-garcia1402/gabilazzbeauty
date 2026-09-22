@@ -14,8 +14,9 @@ export function Studio() {
   const a = business.address
   const { openPhoto } = usePhotoViewer()
   return (
-    <section id="studio" className="relative scroll-mt-20 py-24 sm:py-32">
-      <div className="container-x">
+    <section id="studio" className="relative scroll-mt-20 overflow-hidden bg-blush/60 py-24 sm:py-32">
+      <div aria-hidden className="pattern-swirl pointer-events-none absolute inset-0" />
+      <div className="container-x relative">
         <SectionHeading
           eyebrow="O Studio"
           title="Um espaço acolhedor"
