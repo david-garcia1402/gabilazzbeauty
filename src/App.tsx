@@ -6,7 +6,6 @@ import { Faq } from './components/Faq'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { Navbar } from './components/Navbar'
-import { Process } from './components/Process'
 import { Reviews } from './components/Reviews'
 import { Studio } from './components/Studio'
 import { WhatsAppFloat } from './components/WhatsAppFloat'
@@ -25,7 +24,6 @@ export default function App() {
         <Hero />
         <About />
         <Catalog />
-        <Process />
         <Studio />
         <Reviews />
         <Faq />

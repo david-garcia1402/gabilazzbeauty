@@ -51,7 +51,7 @@ Em **Pages → Connect to Git**: framework preset **Vite**, build command `npm r
 ```
 src/
   data/site.ts        # contato, endereço, serviços/preços, avaliações, políticas
-  components/         # seções da página (Hero, About, Catalog, Process, Reviews, Studio, Faq, Cta, Footer)
+  components/         # seções da página (Hero, About, Catalog, Reviews, Studio, Faq, Cta, Footer)
   components/ui/      # Button, Reveal, SectionHeading, WhatsAppIcon
   assets/             # fotos reais do catálogo (WebP) e logo
 public/               # favicon, manifest, _headers, robots, sitemap, og-image

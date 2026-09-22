@@ -153,31 +153,6 @@ export const reviews = [
   },
 ]
 
-export const processSteps = [
-  {
-    title: 'Avaliação do olhar',
-    text: 'Cada procedimento é personalizado. Avalio o formato dos seus olhos e indico a técnica que mais valoriza o seu olhar.',
-  },
-  {
-    title: 'Escolha juntas',
-    text: 'Definimos o modelo ideal em conjunto, priorizando sempre o seu gosto e o resultado que você deseja.',
-  },
-  {
-    title: 'Aplicação indolor',
-    text: 'O procedimento dura em média 1h, podendo chegar a 2h dependendo da quantidade de cílios. É um processo indolor.',
-  },
-  {
-    title: 'Saúde ocular em 1º lugar',
-    text: 'Produtos de qualidade, higiene rigorosa e cuidado em cada fio. Sua saúde ocular é nossa prioridade.',
-  },
-]
-
-export const importantNotes = [
-  'Evite vir com maquiagem, principalmente rímel.',
-  'Se usa lentes de contato, retire antes do procedimento.',
-  'Programe-se para não se atrasar: tolerância de 10 minutos para não prejudicar a próxima cliente.',
-]
-
 export const restrictions = [
   'Cirurgia recente nos olhos',
   'Tratamento de quimioterapia em andamento',
@@ -196,7 +171,6 @@ export const paymentMethods = ['Dinheiro', 'Pix', 'Cartão de crédito', 'Cartã
 export const navLinks = [
   { href: '#sobre', label: 'Sobre' },
   { href: '#catalogo', label: 'Catálogo' },
-  { href: '#procedimento', label: 'Procedimento' },
   { href: '#studio', label: 'Studio' },
   { href: '#depoimentos', label: 'Depoimentos' },
   { href: '#faq', label: 'Dúvidas' },
