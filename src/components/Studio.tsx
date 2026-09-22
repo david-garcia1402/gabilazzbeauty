@@ -20,7 +20,7 @@ export function Studio() {
           eyebrow="O Studio"
           title="Um espaço acolhedor"
           highlight="feito para você relaxar."
-          description="Studio de cílios no bairro Rau, em Jaraguá do Sul. Ambiente reservado, confortável e preparado com todo o cuidado para o seu momento."
+          description="Studio de cílios no Centro de Jaraguá do Sul. Ambiente reservado, confortável e preparado com todo o cuidado para o seu momento."
         />
 
         <div className="mt-16 grid gap-6 lg:grid-cols-12">
@@ -69,7 +69,7 @@ export function Studio() {
                     <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-wine-50 text-wine-600">
                       <MapPin size={16} />
                     </span>
-                    Sala 04 · Rau, Jaraguá do Sul - SC
+                    Sala 06 · Centro, Jaraguá do Sul - SC
                   </div>
                   <a
                     href={business.googleMapsUrl}
