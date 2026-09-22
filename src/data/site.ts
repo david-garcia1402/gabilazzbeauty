@@ -132,7 +132,7 @@ export const services: Service[] = [
     image: volumeAura,
     price: 160,
     maintenance: { early: 95, late: 100 },
-    tags: ['Natural', 'Suave'],
+    tags: ['Volume', 'Natural'],
   },
   {
     slug: 'volume-flora',
@@ -143,7 +143,7 @@ export const services: Service[] = [
     image: volumeFlora,
     price: 160,
     maintenance: { early: 95, late: 100 },
-    tags: ['Fios marrom', 'Spikes'],
+    tags: ['Volume', 'Fios marrom'],
   },
   {
     slug: 'sirena-cisne',

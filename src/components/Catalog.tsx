@@ -125,8 +125,8 @@ function Carousel({ items }: { items: Service[] }) {
     [Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: true, stopOnFocusIn: true })],
   )
   const [selected, setSelected] = useState(0)
-  const [snaps, setSnaps] = useState<number[]>([])
   const [progress, setProgress] = useState(0)
+  const snaps = emblaApi?.scrollSnapList() ?? []
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
@@ -140,9 +140,7 @@ function Carousel({ items }: { items: Service[] }) {
 
   useEffect(() => {
     if (!emblaApi) return
-    setSnaps(emblaApi.scrollSnapList())
-    onSelect()
-    onScroll()
+    // oxlint-disable-next-line react/set-state-in-effect -- subscribing to Embla events, state only changes on those events
     emblaApi.on('select', onSelect).on('reInit', onSelect).on('scroll', onScroll).on('reInit', onScroll)
     return () => {
       emblaApi.off('select', onSelect).off('reInit', onSelect).off('scroll', onScroll).off('reInit', onScroll)
@@ -251,7 +249,7 @@ function ServiceCard({ service, active, index }: { service: Service; active: boo
               Mais pedido
             </span>
           )}
-          {service.tags.slice(0, 2).map((t) => (
+          {service.tags.slice(0, service.featured ? 1 : 2).map((t) => (
             <span
               key={t}
               className="rounded-full border border-cream/25 bg-wine-900/40 px-3 py-1 text-[0.62rem] font-medium tracking-[0.2em] text-cream uppercase backdrop-blur-md"
@@ -269,18 +267,23 @@ function ServiceCard({ service, active, index }: { service: Service; active: boo
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="text-sm leading-relaxed text-cream/75">{service.description}</p>
 
-        <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-cream/10 pt-5">
+        <dl className="mt-5 flex items-end justify-between gap-4 border-t border-cream/10 pt-5">
           <div>
             <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">Colocação</dt>
-            <dd className="font-display mt-1 text-2xl leading-none font-semibold text-gold-300">{formatBRL(service.price)}</dd>
+            <dd className="font-display mt-1 text-[2rem] leading-none font-semibold text-gold-300">{formatBRL(service.price)}</dd>
           </div>
-          <div>
-            <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">15 a 23 dias</dt>
-            <dd className="font-display mt-1 text-2xl leading-none font-medium text-cream">{formatBRL(service.maintenance.early)}</dd>
-          </div>
-          <div>
-            <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">Após 24 dias</dt>
-            <dd className="font-display mt-1 text-2xl leading-none font-medium text-cream">{formatBRL(service.maintenance.late)}</dd>
+          <div className="text-right">
+            <dt className="text-[0.62rem] tracking-[0.2em] text-cream/55 uppercase">Manutenção</dt>
+            <dd className="mt-1 space-y-0.5 text-sm leading-tight text-cream">
+              <p>
+                <span className="font-display text-lg font-semibold">{formatBRL(service.maintenance.early)}</span>
+                <span className="ml-1.5 text-xs text-cream/55">15 a 23 dias</span>
+              </p>
+              <p>
+                <span className="font-display text-lg font-semibold">{formatBRL(service.maintenance.late)}</span>
+                <span className="ml-1.5 text-xs text-cream/55">após 24 dias</span>
+              </p>
+            </dd>
           </div>
         </dl>
 

@@ -39,7 +39,7 @@ export function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="glass absolute -right-4 -bottom-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-soft sm:-right-8"
+              className="glass absolute right-3 -bottom-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-soft sm:-right-8"
             >
               <span className="font-display text-4xl leading-none font-semibold text-wine-600">21</span>
               <span className="text-xs leading-tight text-ink-soft">

@@ -22,7 +22,7 @@ export function Hero() {
       ref={ref}
       className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-wine-900 text-cream"
     >
-      <motion.div style={{ y: imgY }} className="absolute inset-0 -z-10">
+      <motion.div style={{ y: imgY }} className="absolute inset-0 -z-10 lg:left-[18%]">
         <motion.img
           src={heroImg}
           alt="Gabrieli Lazzarotto, lash designer, segurando escovinhas de cílios sob um ring light"
@@ -38,6 +38,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_80%,rgba(122,27,42,0.55),transparent_60%)]" />
       </motion.div>
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,#2f0910_0%,rgba(47,9,16,0.7)_18%,transparent_45%)] lg:block"
+      />
 
       <motion.div
         aria-hidden
