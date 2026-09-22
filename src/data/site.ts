@@ -16,21 +16,21 @@ export const business = {
   phoneDisplay: '(47) 99769-4779',
   phoneE164: '5547997694779',
   address: {
-    street: 'R. Jorge Frederico Augusto Karsten, 433 - Sl 04',
-    district: 'Rau',
+    street: 'Rua Josef Fontana, 42 - Sala 06',
+    district: 'Centro',
     city: 'Jaraguá do Sul - SC',
-    zip: '89254-373',
+    zip: '89251-710',
   },
   mission: 'Minha missão é realçar a beleza que existe em você!',
   rating: { value: '5,0', count: 5 },
   googleMapsUrl:
     'https://www.google.com/maps/search/?api=1&query=' +
     encodeURIComponent(
-      'Gabrieli Lazzarotto Lash Designer, R. Jorge Frederico Augusto Karsten, 433 - Sl 04 - Rau, Jaraguá do Sul - SC, 89254-373',
+      'Gabrieli Lazzarotto Lash Designer, Rua Josef Fontana, 42 - Sala 06 - Centro, Jaraguá do Sul - SC, 89251-710',
     ),
   googleMapsEmbed:
     'https://www.google.com/maps?q=' +
-    encodeURIComponent('R. Jorge Frederico Augusto Karsten, 433 - Rau, Jaraguá do Sul - SC, 89254-373') +
+    encodeURIComponent('Rua Josef Fontana, 42 - Centro, Jaraguá do Sul - SC, 89251-710') +
     '&output=embed&z=16',
 } as const
 
