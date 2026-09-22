@@ -197,7 +197,7 @@ export const navLinks = [
   { href: '#sobre', label: 'Sobre' },
   { href: '#catalogo', label: 'Catálogo' },
   { href: '#procedimento', label: 'Procedimento' },
-  { href: '#depoimentos', label: 'Depoimentos' },
   { href: '#studio', label: 'Studio' },
+  { href: '#depoimentos', label: 'Depoimentos' },
   { href: '#faq', label: 'Dúvidas' },
 ]

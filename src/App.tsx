@@ -26,8 +26,8 @@ export default function App() {
         <About />
         <Catalog />
         <Process />
-        <Reviews />
         <Studio />
+        <Reviews />
         <Faq />
         <Cta />
       </main>
