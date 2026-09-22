@@ -1,4 +1,4 @@
-import { Banknote, CreditCard, Expand, MapPin, Navigation, Phone, QrCode } from 'lucide-react'
+import { Banknote, CreditCard, Expand, MapPin, Navigation, QrCode } from 'lucide-react'
 import { motion } from 'motion/react'
 import studio from '../assets/studio.webp'
 import { business, paymentMethods } from '../data/site'
@@ -83,46 +83,28 @@ export function Studio() {
               </div>
             </Reveal>
 
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Reveal delay={0.15}>
-                <div className="h-full rounded-[2rem] border border-ink/6 bg-white/70 p-6">
-                  <p className="eyebrow text-wine-600">Formas de pagamento</p>
-                  <ul className="mt-4 grid grid-cols-2 gap-2">
-                    {paymentMethods.map((p, i) => {
-                      const Icon = paymentIcons[i]
-                      return (
-                        <motion.li
-                          key={p}
-                          initial={{ opacity: 0, y: 8 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.2 + i * 0.06 }}
-                          className="flex items-center gap-2 rounded-xl bg-cream px-3 py-2.5 text-sm text-ink-soft"
-                        >
-                          <Icon size={15} className="text-gold-600" /> {p}
-                        </motion.li>
-                      )
-                    })}
-                  </ul>
-                </div>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="flex h-full flex-col justify-between rounded-[2rem] bg-wine-800 p-6 text-cream">
-                  <div>
-                    <p className="eyebrow text-gold-400">Contato</p>
-                    <a
-                      href={`tel:+${business.phoneE164}`}
-                      className="font-display mt-3 flex items-center gap-2 text-2xl font-semibold transition-colors hover:text-gold-300"
-                    >
-                      <Phone size={18} className="text-gold-400" /> {business.phoneDisplay}
-                    </a>
-                  </div>
-                  <p className="mt-4 text-sm leading-relaxed text-cream/70">
-                    Atendimento com hora marcada. Agende pelo WhatsApp e tire suas dúvidas — estou à disposição!
-                  </p>
-                </div>
-              </Reveal>
-            </div>
+            <Reveal delay={0.15}>
+              <div className="rounded-[2rem] border border-ink/6 bg-white/70 p-6">
+                <p className="eyebrow text-wine-600">Formas de pagamento</p>
+                <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {paymentMethods.map((p, i) => {
+                    const Icon = paymentIcons[i]
+                    return (
+                      <motion.li
+                        key={p}
+                        initial={{ opacity: 0, y: 8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + i * 0.06 }}
+                        className="flex items-center gap-2 rounded-xl bg-cream px-3 py-2.5 text-sm text-ink-soft"
+                      >
+                        <Icon size={15} className="text-gold-600" /> {p}
+                      </motion.li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
