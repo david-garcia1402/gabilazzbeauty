@@ -39,12 +39,6 @@ export function Hero() {
           transition={{ duration: 1.8, ease }}
           className="pointer-events-none h-full w-full object-cover object-[62%_20%] sm:object-[center_20%]"
         />
-        <button
-          type="button"
-          aria-label={`Ampliar foto: ${heroAlt}`}
-          onClick={() => openPhoto({ src: heroImg, alt: heroAlt })}
-          className="absolute inset-0 cursor-zoom-in"
-        />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_80%,rgba(122,27,42,0.55),transparent_60%)]" />
       </motion.div>
@@ -62,7 +56,14 @@ export function Hero() {
         <span className="absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rounded-full bg-gold-400 shadow-[0_0_20px_4px_rgba(201,162,74,0.6)]" />
       </motion.div>
 
-      <motion.div style={{ y: textY, opacity: fade }} className="container-x relative z-10 w-full pt-40 pb-20 sm:pb-24 lg:pb-28">
+      <button
+        type="button"
+        aria-label={`Ampliar foto: ${heroAlt}`}
+        onClick={() => openPhoto({ src: heroImg, alt: heroAlt })}
+        className="absolute inset-0 z-0 cursor-zoom-in"
+      />
+
+      <motion.div style={{ y: textY, opacity: fade }} className="pointer-events-none container-x relative z-10 w-full pt-40 pb-20 sm:pb-24 lg:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,7 +120,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.25, ease }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="pointer-events-auto mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button
               href={whatsappLink(defaultWhatsappMessage)}
@@ -143,7 +144,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute right-5 bottom-8 hidden flex-col items-center gap-2 text-[0.65rem] tracking-[0.3em] text-cream/60 uppercase sm:right-8 md:flex lg:right-12"
+          className="pointer-events-auto absolute right-5 bottom-8 hidden flex-col items-center gap-2 text-[0.65rem] tracking-[0.3em] text-cream/60 uppercase sm:right-8 md:flex lg:right-12"
         >
           <span className="[writing-mode:vertical-rl]">Explorar</span>
           <motion.span animate={reduce ? undefined : { y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
