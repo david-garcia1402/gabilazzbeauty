@@ -22,21 +22,29 @@ npm run preview  # serve o build localmente
 
 ## Deploy na Cloudflare
 
-### Cloudflare Pages (recomendado)
+### Workers (Import a repository) — recomendado
 
-1. Conecte o repositório em **Workers & Pages → Create → Pages → Connect to Git**.
-2. Configure:
-   - **Framework preset:** Vite
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Node version:** 20 ou superior (variável `NODE_VERSION=20`, se necessário)
-3. Cada push na branch principal publica automaticamente. O arquivo `public/_headers` já define cache e headers de segurança.
+Em **Workers & Pages → Create → Workers → Import a repository**, selecione este repositório e preencha:
 
-### Cloudflare Workers (Static Assets)
+| Campo | Valor |
+| --- | --- |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Preview command | `npx wrangler versions upload` |
+| Path (Advanced settings) | `/` |
+| API token | crie um token novo para este projeto |
+
+O `wrangler.jsonc` já aponta os assets para `./dist`. Cada push na branch principal publica em produção; pushes em outras branches geram uma URL de preview. O arquivo `public/_headers` define cache e headers de segurança.
+
+Deploy manual pela linha de comando (requer `npx wrangler login`):
 
 ```bash
-npm run deploy:workers   # build + `wrangler deploy` usando wrangler.jsonc
+npm run deploy:workers   # build + `wrangler deploy`
 ```
+
+### Cloudflare Pages (alternativa)
+
+Em **Pages → Connect to Git**: framework preset **Vite**, build command `npm run build`, output directory `dist`.
 
 ## Estrutura
 

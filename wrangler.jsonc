@@ -1,6 +1,10 @@
 {
-  // Deploy alternativo via Cloudflare Workers (Static Assets): `npm run build && npx wrangler deploy`
-  // Para Cloudflare Pages não é necessário: basta apontar o build para `npm run build` e o output para `dist`.
+  // Cloudflare Workers (Static Assets). No painel "Workers → Import a repository":
+  //   Build command:   npm run build
+  //   Deploy command:  npx wrangler deploy
+  //   Preview command: npx wrangler versions upload
+  //   Path:            /
+  // Para Cloudflare Pages este arquivo não é necessário: build `npm run build`, output `dist`.
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gabilazzbeauty",
   "compatibility_date": "2025-09-01",
