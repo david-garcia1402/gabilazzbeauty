@@ -91,7 +91,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6, ease }}
             className="eyebrow text-gold-400"
           >
-            Lash Designer &nbsp;·&nbsp; Maquiadora
+            Lash Designer
           </motion.p>
           <h1 className="font-display mt-4 text-[2.9rem] leading-[0.98] font-medium tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
             {['Realçando a beleza', 'que já existe', 'em você.'].map((line, i) => (
@@ -113,8 +113,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.1, ease }}
             className="mt-6 max-w-xl text-base leading-relaxed text-cream/80 text-pretty sm:text-lg"
           >
-            Extensão de cílios personalizada para o seu olhar. Técnicas que unem volume, leveza e naturalidade
-            em um studio acolhedor em Jaraguá do Sul.
+            Extensão de cílios personalizada para o seu olhar. Técnicas que unem volume, leveza e naturalidade.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
