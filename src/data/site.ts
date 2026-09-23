@@ -12,8 +12,8 @@ export const business = {
   role: 'Lash Designer',
   handle: '@gabilazzbeauty',
   instagram: 'https://www.instagram.com/gabilazzbeauty/',
-  phoneDisplay: '(47) 99769-4779',
-  phoneE164: '5547997694779',
+  phoneDisplay: '(47) 99749-6047',
+  phoneE164: '5547997496047',
   whatsappE164: '5547997496047',
   address: {
     street: 'Rua Josef Fontana, 42 - Sala 06',
