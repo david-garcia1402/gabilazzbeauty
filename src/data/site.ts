@@ -129,18 +129,39 @@ export const services: Service[] = [
   },
 ]
 
-export const reviews = [
+export type Review = {
+  id: string
+  text: string
+  author?: string
+}
+
+export const reviews: Review[] = [
   {
+    id: 'beatriz-carla',
     author: 'Beatriz Carla',
     text: 'Além dela ser uma profissional incrível é muito simpática!',
   },
   {
+    id: 'maria-krause',
     author: 'Maria Krause',
     text: 'Fiz com ela e já virei cliente fiel!',
   },
   {
+    id: 'leticia-karolyne',
     author: 'Letícia Karolyne',
     text: 'Muito atenciosa e caprichosa, trabalho impecável 💗',
+  },
+  {
+    id: 'durabilidade',
+    text: 'Acredita só essa semana que começou a cair, a durabilidade tá muito boa! E todo mundo me elogiou, falaram que ficaram parecendo naturais',
+  },
+  {
+    id: 'autoestima',
+    text: 'Mds você arrasa!! Melhorou muuuuito minha autoestima',
+  },
+  {
+    id: 'capricho',
+    text: 'Amiga eu amei muito meus cílios, ficaram exatamente do jeitinho que eu queria! Da pra ver o capricho no seu trabalho, ficaram lindos e super naturais já quero fazer de novo',
   },
 ]
 
