@@ -37,9 +37,9 @@ export function Hero() {
           initial={{ scale: 1.12, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.8, ease }}
-          className="pointer-events-none h-full w-full object-cover object-[62%_20%] sm:object-[center_20%]"
+          className="hero-photo pointer-events-none h-full w-full object-cover object-[62%_20%] sm:object-[center_20%]"
         />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
+        <div className="hero-shade pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(47,9,16,0.35)_0%,rgba(47,9,16,0.15)_35%,rgba(47,9,16,0.85)_75%,#2f0910_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_80%,rgba(122,27,42,0.55),transparent_60%)]" />
       </motion.div>
       <div
