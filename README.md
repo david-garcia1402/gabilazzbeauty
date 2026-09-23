@@ -30,11 +30,11 @@ Em **Workers & Pages → Create → Workers → Import a repository**, selecione
 | --- | --- |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
-| Preview command | `npx wrangler versions upload` |
+| Non-production branch deploy command | `npx wrangler preview` |
 | Path (Advanced settings) | `/` |
 | API token | crie um token novo para este projeto |
 
-O `wrangler.jsonc` já aponta os assets para `./dist`. Cada push na branch principal publica em produção; pushes em outras branches geram uma URL de preview. O arquivo `public/_headers` define cache e headers de segurança.
+O `wrangler.jsonc` já aponta os assets para `./dist` e inclui o bloco `previews` (pode ficar vazio). Sem esse bloco, o Wrangler 4.135+ recusa o comando `npx wrangler preview`. Cada push na branch principal publica em produção; pushes em outras branches geram uma URL de preview isolada. O arquivo `public/_headers` define cache e headers de segurança.
 
 Deploy manual pela linha de comando (requer `npx wrangler login`):
 

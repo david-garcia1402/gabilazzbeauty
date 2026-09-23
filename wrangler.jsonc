@@ -1,9 +1,11 @@
 {
   // Cloudflare Workers (Static Assets). No painel "Workers → Import a repository":
-  //   Build command:   npm run build
-  //   Deploy command:  npx wrangler deploy
-  //   Preview command: npx wrangler versions upload
-  //   Path:            /
+  //   Build command:                         npm run build
+  //   Deploy command:                        npx wrangler deploy
+  //   Non-production branch deploy command:  npx wrangler preview
+  //   Path:                                  /
+  // `previews` é obrigatório para `wrangler preview` (Worker Previews). Pode ficar
+  // vazio: assets e compatibility_date ficam no topo e não são herdados pelo bloco.
   // Para Cloudflare Pages este arquivo não é necessário: build `npm run build`, output `dist`.
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gabilazzbeauty",
@@ -11,5 +13,6 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "previews": {}
 }
