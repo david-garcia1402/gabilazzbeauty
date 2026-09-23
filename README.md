@@ -1,6 +1,6 @@
 # Gabrieli Lazzarotto · Lash Designer
 
-Site institucional (landing page) de **Gabrieli Lazzarotto — Lash Designer | Maquiadora**, Jaraguá do Sul - SC.
+Site institucional (landing page) de **Gabrieli Lazzarotto — Lash Designer**, Jaraguá do Sul - SC.
 100% estático, mobile first, pronto para deploy na Cloudflare.
 
 ## Stack

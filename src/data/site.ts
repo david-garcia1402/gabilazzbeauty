@@ -9,7 +9,7 @@ import volumeEgipcio from '../assets/services/volume-egipcio-5d.webp'
 
 export const business = {
   name: 'Gabrieli Lazzarotto',
-  role: 'Lash Designer | Maquiadora',
+  role: 'Lash Designer',
   handle: '@gabilazzbeauty',
   instagram: 'https://www.instagram.com/gabilazzbeauty/',
   phoneDisplay: '(47) 99769-4779',
