@@ -164,7 +164,9 @@ function Carousel({ items }: { items: Service[] }) {
 
   useEffect(() => {
     const autoplay = emblaApi?.plugins()?.autoplay
-    if (!autoplay || !('play' in autoplay) || !('stop' in autoplay)) return
+    if (!emblaApi || !autoplay || !('play' in autoplay) || !('stop' in autoplay)) return
+    // Autoplay skips init when every slide fits; calling play() then crashes.
+    if (emblaApi.scrollSnapList().length <= 1) return
     if (photo) autoplay.stop()
     else autoplay.play()
   }, [emblaApi, photo])
