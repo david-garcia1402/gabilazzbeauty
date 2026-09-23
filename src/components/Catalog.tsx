@@ -2,31 +2,15 @@ import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import type { EmblaCarouselType } from 'embla-carousel'
 import { ArrowLeft, ArrowRight, Clock3, Expand } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { motion } from 'motion/react'
+import { useCallback, useEffect, useState } from 'react'
 import { services, whatsappLink, type Service } from '../data/site'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
 import { usePhotoViewer } from './ui/usePhotoViewer'
 
-const filters = [
-  { id: 'todos', label: 'Todos', tags: null },
-  { id: 'volumes', label: 'Volumes', tags: ['Volume'] },
-  { id: 'efeitos', label: 'Efeitos', tags: ['Efeito'] },
-  { id: 'naturais', label: 'Naturais', tags: ['Natural', 'Fios marrom', 'Suave', 'Leve'] },
-] as const
-
-type FilterId = (typeof filters)[number]['id']
-
 export function Catalog() {
-  const [filter, setFilter] = useState<FilterId>('todos')
-  const list = useMemo(() => {
-    const f = filters.find((x) => x.id === filter)!
-    if (!f.tags) return services
-    return services.filter((s) => s.tags.some((t) => (f.tags as readonly string[]).includes(t)))
-  }, [filter])
-
   return (
     <section id="catalogo" className="relative scroll-mt-20 overflow-hidden bg-wine-900 py-24 text-cream sm:py-32">
       <div
@@ -48,49 +32,14 @@ export function Catalog() {
             align="left"
             tone="dark"
           />
-          <Reveal delay={0.2} className="shrink-0">
-            <div role="tablist" aria-label="Filtrar catálogo" className="hide-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0">
-              {filters.map((f) => {
-                const active = f.id === filter
-                return (
-                  <button
-                    key={f.id}
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setFilter(f.id)}
-                    className={`relative shrink-0 rounded-full px-5 py-2.5 text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-300 ${
-                      active ? 'text-wine-900' : 'text-cream/70 hover:text-cream'
-                    }`}
-                  >
-                    {active && (
-                      <motion.span
-                        layoutId="catalog-filter"
-                        className="absolute inset-0 -z-10 rounded-full bg-[linear-gradient(100deg,#a98330,#eed9a3_50%,#c9a24a)]"
-                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                      />
-                    )}
-                    {!active && <span className="absolute inset-0 -z-10 rounded-full border border-cream/15" />}
-                    {f.label}
-                  </button>
-                )
-              })}
-            </div>
+          <Reveal delay={0.2} className="shrink-0 lg:pb-1">
+            <p className="font-display text-2xl font-medium tracking-tight text-gold sm:text-3xl">Todos os volumes</p>
           </Reveal>
         </div>
       </div>
 
       <div className="mt-12 sm:mt-16">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={filter}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Carousel items={list} />
-          </motion.div>
-        </AnimatePresence>
+        <Carousel items={services} />
       </div>
 
       <Reveal delay={0.1} className="container-x mt-14">
