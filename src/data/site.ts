@@ -15,6 +15,7 @@ export const business = {
   instagram: 'https://www.instagram.com/gabilazzbeauty/',
   phoneDisplay: '(47) 99769-4779',
   phoneE164: '5547997694779',
+  whatsappE164: '5547997496047',
   address: {
     street: 'Rua Josef Fontana, 42 - Sala 06',
     district: 'Centro',
@@ -35,7 +36,7 @@ export const business = {
 } as const
 
 export function whatsappLink(message?: string) {
-  const base = `https://wa.me/${business.phoneE164}`
+  const base = `https://wa.me/${business.whatsappE164}`
   return message ? `${base}?text=${encodeURIComponent(message)}` : base
 }
 
