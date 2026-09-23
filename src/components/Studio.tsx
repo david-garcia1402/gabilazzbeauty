@@ -8,7 +8,8 @@ import { SectionHeading } from './ui/SectionHeading'
 
 const paymentIcons = [Banknote, QrCode, CreditCard, CreditCard]
 
-const studioAlt = 'Interior do studio: parede vinho, prateleira de esmaltes, maca e ring light'
+const studioAlt =
+  'Interior do studio: parede vinho com a logo Gabrieli Lazzarotto, prateleira de esmaltes, carrinho, maca e ring light'
 
 export function Studio() {
   const a = business.address
@@ -32,7 +33,7 @@ export function Studio() {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[var(--ease-luxe)] group-hover:scale-[1.05]"
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_30%] transition-transform duration-[1.6s] ease-[var(--ease-luxe)] group-hover:scale-[1.05]"
               />
               <button
                 type="button"
