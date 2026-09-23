@@ -1,6 +1,6 @@
 import { MapPin, Phone } from 'lucide-react'
-import logoLight from '../assets/brand/logo-light.webp'
 import { business, navLinks, whatsappLink } from '../data/site'
+import { BrandLogo } from './ui/BrandLogo'
 import { InstagramIcon } from './ui/InstagramIcon'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
 
@@ -12,7 +12,7 @@ export function Footer() {
         <div className="gold-line" />
         <div className="grid gap-10 py-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <img src={logoLight} alt={`${business.name} · Lash Designer`} width={1587} height={393} loading="lazy" className="h-14 w-auto" />
+            <BrandLogo tone="cream" loading="lazy" className="h-12 w-auto sm:h-14 md:h-16" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream/65">
               Extensão de cílios em Jaraguá do Sul. {business.mission}
             </p>

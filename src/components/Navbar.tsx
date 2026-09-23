@@ -1,9 +1,8 @@
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import logoDark from '../assets/brand/logo-dark.webp'
-import logoLight from '../assets/brand/logo-light.webp'
 import { business, defaultWhatsappMessage, navLinks, whatsappLink } from '../data/site'
+import { BrandLogo } from './ui/BrandLogo'
 import { InstagramIcon } from './ui/InstagramIcon'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
 
@@ -38,22 +37,19 @@ export function Navbar() {
         }`}
       >
         <nav className="container-x flex items-center justify-between gap-4" aria-label="Principal">
-          <a href="#inicio" className="relative block h-9 w-36 shrink-0 sm:h-10 sm:w-44" aria-label="Início">
-            <img
-              src={logoLight}
-              alt=""
-              className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${onDark ? 'opacity-100' : 'opacity-0'}`}
-              width={1587}
-              height={393}
-              decoding="async"
+          <a
+            href="#inicio"
+            className="relative block h-8 aspect-[1587/392] shrink-0 sm:h-10 md:h-11"
+            aria-label={`${business.name}, início`}
+          >
+            <BrandLogo
+              tone="cream"
+              labelled={false}
+              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${onDark ? 'opacity-100' : 'opacity-0'}`}
             />
-            <img
-              src={logoDark}
-              alt={`${business.name} · Lash Designer`}
-              className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${onDark ? 'opacity-0' : 'opacity-100'}`}
-              width={1587}
-              height={393}
-              decoding="async"
+            <BrandLogo
+              labelled={false}
+              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${onDark ? 'opacity-0' : 'opacity-100'}`}
             />
           </a>
 
