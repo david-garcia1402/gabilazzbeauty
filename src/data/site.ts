@@ -6,7 +6,6 @@ import sirenaCisne from '../assets/services/sirena-cisne.webp'
 import volumeAura from '../assets/services/volume-aura.webp'
 import volumeBrasileiro from '../assets/services/volume-brasileiro.webp'
 import volumeEgipcio from '../assets/services/volume-egipcio-5d.webp'
-import volumeFlora from '../assets/services/volume-flora.webp'
 
 export const business = {
   name: 'Gabrieli Lazzarotto',
@@ -117,15 +116,6 @@ export const services: Service[] = [
       'Um modelo mais natural, dando um maior destaque porém com um volume suave, sem exageros.',
     image: volumeAura,
     tags: ['Volume', 'Natural'],
-  },
-  {
-    slug: 'volume-flora',
-    name: 'Volume Flora',
-    tagline: 'Charme diferente',
-    description:
-      'Utiliza o fio 4D na cor marrom, com alguns spikes (fios maiores), trazendo naturalidade e um charme diferente.',
-    image: volumeFlora,
-    tags: ['Volume', 'Fios marrom'],
   },
   {
     slug: 'sirena-cisne',
