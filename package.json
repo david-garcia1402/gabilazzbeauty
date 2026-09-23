@@ -2,7 +2,7 @@
   "name": "gabilazzbeauty",
   "private": true,
   "version": "1.0.0",
-  "description": "Site institucional de Gabrieli Lazzarotto · Lash Designer | Maquiadora (Jaraguá do Sul - SC)",
+  "description": "Site institucional de Gabrieli Lazzarotto · Lash Designer (Jaraguá do Sul - SC)",
   "type": "module",
   "engines": {
     "node": ">=20"

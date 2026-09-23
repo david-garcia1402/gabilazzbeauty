@@ -14,7 +14,7 @@ export function Footer() {
           <div className="md:col-span-5">
             <img src={logoLight} alt={`${business.name} · Lash Designer`} width={1587} height={393} loading="lazy" className="h-14 w-auto" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream/65">
-              Extensão de cílios e maquiagem em Jaraguá do Sul. {business.mission}
+              Extensão de cílios em Jaraguá do Sul. {business.mission}
             </p>
             <div className="mt-6 flex gap-2">
               <a
