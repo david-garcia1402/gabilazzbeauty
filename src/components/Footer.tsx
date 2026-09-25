@@ -1,4 +1,4 @@
-import { MapPin, Phone } from 'lucide-react'
+import { Globe, MapPin, Phone } from 'lucide-react'
 import { business, navLinks, whatsappLink } from '../data/site'
 import { BrandLogo } from './ui/BrandLogo'
 import { InstagramIcon } from './ui/InstagramIcon'
@@ -79,32 +79,52 @@ export function Footer() {
             <p>Jaraguá do Sul · Santa Catarina</p>
           </div>
 
-          <a
-            href="https://www.instagram.com/cub4studio/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Desenvolvido por @cub4studio — abrir Instagram"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] py-1.5 pr-4 pl-1.5 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
-          >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
-            />
-            <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full text-cream">
-              <span
-                aria-hidden
-                className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#ee2a7b_45%,#6228d7_75%,#f9ce34)] transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:rotate-180"
-              />
-              <span
-                aria-hidden
-                className="absolute inset-[1.5px] rounded-full bg-wine-900 transition-opacity duration-300 group-hover:opacity-0"
-              />
-              <InstagramIcon size={15} className="relative z-10" />
-            </span>
-            <span className="relative tracking-wide">
-              Desenvolvido por <span className="font-medium text-gold-300">@cub4studio</span>
-            </span>
-          </a>
+          <div className="flex flex-col items-center gap-2.5">
+            <p className="text-[0.68rem] tracking-[0.28em] text-cream/40 uppercase">Desenvolvido por</p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <a
+                href="https://www.instagram.com/cub4studio/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram @cub4studio"
+                className="group relative inline-flex h-10 items-center gap-2.5 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] pr-3.5 pl-1 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
+                />
+                <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full text-cream">
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#ee2a7b_45%,#6228d7_75%,#f9ce34)] transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:rotate-180"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-[1.5px] rounded-full bg-wine-900 transition-opacity duration-300 group-hover:opacity-0"
+                  />
+                  <InstagramIcon size={15} className="relative z-10" />
+                </span>
+                <span className="relative font-medium tracking-wide text-gold-300">@cub4studio</span>
+              </a>
+
+              <a
+                href="https://cub4studio.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Site cub4studio.com"
+                className="group relative inline-flex h-10 items-center gap-2.5 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] pr-3.5 pl-1 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
+                />
+                <span className="relative grid h-8 w-8 place-items-center rounded-full border border-gold-400/45 text-gold-300">
+                  <Globe size={15} aria-hidden />
+                </span>
+                <span className="relative font-medium tracking-wide text-gold-300">cub4studio.com</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
