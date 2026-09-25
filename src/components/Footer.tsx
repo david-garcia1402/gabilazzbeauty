@@ -1,8 +1,90 @@
-import { Globe, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Globe, MapPin, Phone } from 'lucide-react'
+import { motion, useReducedMotion } from 'motion/react'
+import type { ReactNode } from 'react'
 import { business, navLinks, whatsappLink } from '../data/site'
 import { BrandLogo } from './ui/BrandLogo'
 import { InstagramIcon } from './ui/InstagramIcon'
 import { WhatsAppIcon } from './ui/WhatsAppIcon'
+
+function StudioCredit({
+  href,
+  label,
+  icon,
+  children,
+}: {
+  href: string
+  label: string
+  icon: ReactNode
+  children: ReactNode
+}) {
+  const reduce = useReducedMotion()
+
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      whileHover={reduce ? undefined : { y: -3 }}
+      whileTap={reduce ? undefined : { scale: 0.97 }}
+      className="group relative inline-flex h-11 items-center gap-2 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] pr-3 pl-1 text-[0.8rem] text-cream/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] outline-none transition-[border-color,box-shadow,background-color] duration-300 ease-[var(--ease-luxe)] hover:border-gold-400/80 hover:bg-white/[0.08] hover:shadow-[0_16px_40px_-16px_rgba(201,162,74,0.75)] focus-visible:border-gold-400 focus-visible:bg-white/[0.08]"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_34%,rgba(255,255,255,0.22)_50%,transparent_66%)] bg-[length:220%_100%] animate-shimmer opacity-80"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/45 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[260%] group-focus-visible:translate-x-[260%]"
+      />
+      {icon}
+      <span className="relative font-medium tracking-wide text-gold-300 transition-colors duration-300 group-hover:text-cream group-focus-visible:text-cream">
+        {children}
+      </span>
+      <ArrowUpRight
+        size={14}
+        aria-hidden
+        className="relative text-gold-400/80 transition-transform duration-300 ease-[var(--ease-luxe)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold-300 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:text-gold-300"
+      />
+    </motion.a>
+  )
+}
+
+function InstagramMark() {
+  return (
+    <span className="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full text-cream">
+      <span
+        aria-hidden
+        className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#ee2a7b_45%,#6228d7_75%,#f9ce34)] transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:rotate-180 group-focus-visible:rotate-180"
+      />
+      <span
+        aria-hidden
+        className="absolute inset-[1.5px] rounded-full bg-wine-900 transition-opacity duration-300 group-hover:opacity-0 group-focus-visible:opacity-0"
+      />
+      <InstagramIcon size={15} className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110" />
+    </span>
+  )
+}
+
+function SiteMark() {
+  return (
+    <span className="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full text-gold-300 transition-colors duration-300 group-hover:text-wine-900 group-focus-visible:text-wine-900">
+      <span
+        aria-hidden
+        className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#c9a24a_45%,#eed9a3_75%,#f9ce34)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+      />
+      <span
+        aria-hidden
+        className="absolute inset-[1.5px] rounded-full border border-gold-400/45 bg-wine-900 transition-opacity duration-300 group-hover:opacity-0 group-focus-visible:opacity-0"
+      />
+      <Globe
+        size={15}
+        aria-hidden
+        className="relative z-10 transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:scale-110 group-hover:rotate-12 group-focus-visible:scale-110 group-focus-visible:rotate-12"
+      />
+    </span>
+  )
+}
 
 export function Footer() {
   const a = business.address
@@ -82,47 +164,12 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2.5">
             <p className="text-[0.68rem] tracking-[0.28em] text-cream/40 uppercase">Desenvolvido por</p>
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <a
-                href="https://www.instagram.com/cub4studio/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram @cub4studio"
-                className="group relative inline-flex h-10 items-center gap-2.5 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] pr-3.5 pl-1 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
-              >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
-                />
-                <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full text-cream">
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#ee2a7b_45%,#6228d7_75%,#f9ce34)] transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:rotate-180"
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute inset-[1.5px] rounded-full bg-wine-900 transition-opacity duration-300 group-hover:opacity-0"
-                  />
-                  <InstagramIcon size={15} className="relative z-10" />
-                </span>
-                <span className="relative font-medium tracking-wide text-gold-300">@cub4studio</span>
-              </a>
-
-              <a
-                href="https://cub4studio.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Site cub4studio.com"
-                className="group relative inline-flex h-10 items-center gap-2.5 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] pr-3.5 pl-1 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
-              >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
-                />
-                <span className="relative grid h-8 w-8 place-items-center rounded-full border border-gold-400/45 text-gold-300">
-                  <Globe size={15} aria-hidden />
-                </span>
-                <span className="relative font-medium tracking-wide text-gold-300">cub4studio.com</span>
-              </a>
+              <StudioCredit href="https://www.instagram.com/cub4studio/" label="Instagram @cub4studio" icon={<InstagramMark />}>
+                @cub4studio
+              </StudioCredit>
+              <StudioCredit href="https://cub4studio.com" label="Site cub4studio.com" icon={<SiteMark />}>
+                cub4studio.com
+              </StudioCredit>
             </div>
           </div>
         </div>
