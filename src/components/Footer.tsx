@@ -71,11 +71,40 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-3 border-t border-cream/10 py-6 text-xs text-cream/50 sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} {business.name} · Lash Designer. Todos os direitos reservados.
-          </p>
-          <p>Jaraguá do Sul · Santa Catarina</p>
+        <div className="flex flex-col items-center gap-5 border-t border-cream/10 py-6">
+          <div className="flex w-full flex-col items-center justify-between gap-3 text-xs text-cream/50 sm:flex-row">
+            <p>
+              © {new Date().getFullYear()} {business.name} · Lash Designer. Todos os direitos reservados.
+            </p>
+            <p>Jaraguá do Sul · Santa Catarina</p>
+          </div>
+
+          <a
+            href="https://www.instagram.com/cub4studio/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Desenvolvido por @cub4studio — abrir Instagram"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-cream/15 bg-white/[0.04] py-1.5 pr-4 pl-1.5 text-[0.8rem] text-cream/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-all duration-300 ease-[var(--ease-luxe)] hover:-translate-y-0.5 hover:border-gold-400/70 hover:text-cream hover:shadow-[0_14px_36px_-16px_rgba(201,162,74,0.65)] active:translate-y-0 active:scale-[0.98]"
+          >
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:translate-x-[280%]"
+            />
+            <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full text-cream">
+              <span
+                aria-hidden
+                className="absolute inset-0 bg-[conic-gradient(from_210deg,#f9ce34,#ee2a7b_45%,#6228d7_75%,#f9ce34)] transition-transform duration-700 ease-[var(--ease-luxe)] group-hover:rotate-180"
+              />
+              <span
+                aria-hidden
+                className="absolute inset-[1.5px] rounded-full bg-wine-900 transition-opacity duration-300 group-hover:opacity-0"
+              />
+              <InstagramIcon size={15} className="relative z-10" />
+            </span>
+            <span className="relative tracking-wide">
+              Desenvolvido por <span className="font-medium text-gold-300">@cub4studio</span>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
